@@ -36,7 +36,7 @@ function getStreetAddress(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://api.geonames.org/findNearestAddressJSON?lat="+lat+"&lng="+long+"&username=bdionysus",
+        "url": "https://secure.geonames.org/findNearestAddressJSON?lat="+lat+"&lng="+long+"&username=bdionysus",
         "method": "GET",
         "headers": {
 
