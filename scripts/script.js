@@ -1,3 +1,6 @@
+var lat;
+var long;
+
 $(document).ready(init);
 
 
@@ -7,7 +10,9 @@ $(document).ready(init);
 function init(){
     
     
-    getCurrentLocation();
+    // getCurrentLocation();
+    getBallot();
+
 
 }
 
@@ -46,7 +51,38 @@ function getStreetAddress(){
         displayAddress(response);
     });
 }
+
+
+
+function getBallot(){
+    var APIKey="y7BRgIT6VX4YDceQNfig6Lf7UnvdUh1NVLTxLcef";
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.open.fec.gov/v1/candidates/?sort_null_only=false&sort_hide_null=false&is_active_candidate=true&election_year=2020&per_page=100&page=1&sort_nulls_last=true&candidate_status=C&api_key="+APIKey,
+        "method": "GET",
+        "headers": {
+
+        }
+    }    
+    $.ajax(settings).done(function (response) {
+        displayBallot(response);
+    });
+}
 var _rep;
+function displayBallot(response){
+    _rep=response;
+    console.log(_rep);
+    var main=$("<div>").attr("id","main");
+        $("body").append(main);
+        
+    for (candidate of response.results){
+        main.append($("<div>").text(candidate.name));
+        
+    }
+}
+
+
 function displayAddress(response){
     _rep=response;
 
